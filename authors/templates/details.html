@@ -1,0 +1,47 @@
+{% extends 'home/base/navbar.html' %}
+{% load static %}
+{% block body %}
+
+
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Yazar</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="{{article.image.url}}" class="img-fluid" alt="" style="max-height:350px;width: 100%;">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+            <div class="row">
+              <div class="col-lg-10">
+               <ul style="align-items: center;">
+               <h3><p class="tweet-button"  data-lang="tr"  data-size="large">{{article.title}}</p></h3>
+                <style>
+                  .tweet-button {text-align: center;width: 300px;margin-right: 30px;margin-top: 30%;float: right;padding: 5px 10px;background-color: #1DA1F2;color: white;border-radius: 10px;}
+                </style>
+              </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><br>
+    </section><!-- End About Section -->
+     <section id="testimonials" class="testimonials section-bg">
+      <div class="container">
+        <div class="section-title">
+          <h2>{{article.title}} Alıntıları</h2>
+        </div>
+       {% for i in alıntılar %}
+          <div class="testimonial-item" data-aos="fade-up">
+            <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+             {{i.conten_quotations|safe}}
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+          </div>
+       {% endfor %}
+        </div>
+    </section><!-- End Testimonials Section -->
+  </main><!-- End #main -->
+{% endblock %}

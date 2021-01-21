@@ -1,0 +1,44 @@
+{% extends 'home/base/navbar.html' %}
+
+{% load static %}
+{% block body %}
+
+  <main id="main">
+
+ <!-- ======= Portfolio Section ======= -->
+    <section id="blog" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Yazarlar</h2>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Hepsi</li>
+              <li data-filter=".yerli">Yerli</li>
+              <li data-filter=".yabancı">Yabancı</li>
+            </ul>
+          </div>
+        </div>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+          {% for i in author %}
+          <div class="col-lg-4 col-md-6 portfolio-item {{i.filter}}">
+            <div class="portfolio-wrap">
+              <img src="{{i.image.url}}" class="img-fluid" alt="" style="height:250px;width:100%;">
+              <div class="portfolio-links">
+                <a href="{% url 'details' i.slug %}" title="More Details">{{i.title}}</a>
+              </div>
+            </div>
+          </div>
+          {% empty %}
+				  Boş
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'home/base/navbar.html' %}
+
+{% load static %}
+{% block body %}
+
+  <main id="main">
+
+ <!-- ======= Portfolio Section ======= -->
+    <section id="blog" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Sözler</h2>
+        </div>
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+          {% for i in posts %}
+          <div class="col-lg-4 col-md-6 portfolio-item {{i.filter}}">
+            <div class="portfolio-wrap">
+              <img src="{{i.article_image.url}}" class="img-fluid" alt="" style="height:250px;width:100%;">
+              <div class="portfolio-links">
+                <a href="{% url 'posts_details' i.slug %}" title="More Details">{{i.title|truncatechars:15}}</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'home/base/navbar.html' %}
+{% block body %}
+
+
+<main id="main">
+<div class="container">
+	<div class="row">
+		<div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h4>Profil</h4><hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %} 
+                              <div class="form-group row">
+                                <label for="username" class="col-4 col-form-label">kullanıcıadı</label> 
+                                <div class="col-8">
+                                  <input id="username" name="username" value="{{request.user}}" class="form-control here" required="required" type="text">
+                                </div>
+                              </div><br>
+                              <div class="form-group row">
+                                <label for="first_name" class="col-4 col-form-label">Adı</label> 
+                                <div class="col-8">
+                                  <input id="first_name" name="first_name" value="{{request.user.first_name}}" class="form-control here" type="text">
+                                </div>
+                              </div><br>
+                              <div class="form-group row">
+                                <label for="last_name" class="col-4 col-form-label">Soyadı</label> 
+                                <div class="col-8">
+                                  <input id="last_name" name="last_name" value="{{request.user.last_name}}" class="form-control here" type="text">
+                                </div>
+                              </div><br>
+                              <div class="form-group row">
+                                <div class="offset-4 col-8">
+                                  <button name="submit" type="submit" class="btn btn-success">Güncelle</button>
+                                </div>
+                              </div>
+                            </form>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>
+
+</main><!-- End #main -->
+
+{% endblock %}

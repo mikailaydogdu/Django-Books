@@ -1,0 +1,54 @@
+{% extends 'home/base/navbar.html' %}
+
+{% block body %}
+
+  <main id="main">
+
+     <section id="testimonials" class="testimonials section-bg">
+      <div class="container">
+          <!DOCTYPE html>
+        <div class="section-title">
+          <h2>Keşfet</h2>
+        </div>
+
+       {% for i in page_obj %}
+          <div class="testimonial-item" data-aos="fade-up">
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              {{i.content}} - <a href="{% url 'details' i.artist.slug %}"> {{i.artist}}</a>
+                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                 <a target="_blank" style="text-align:center;" class="twitter-share-button" data-lang="tr"  href="https://twitter.com/intent/tweet?text={{i.content}}-{{i.artist}} @asklaokuyanlara" data-size="large">Paylaş</a>
+            </p>
+          </div>
+       {% endfor %}
+        </div>
+    </section><!-- End Testimonials Section -->
+
+
+{% if page_obj.has_other_pages %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled btn btn-primary"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in page_obj.paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="btn btn-primary" class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a class="btn btn-primary" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="btn btn-primary" class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+  </main><!-- End #main -->
+
+{% endblock %}
